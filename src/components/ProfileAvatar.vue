@@ -6,7 +6,7 @@ const {name} = defineProps<{
 
 <template>
   <div class="profile-avatar">
-    <img src="../../public/avatar.png" class="profile-avatar__img" alt="Avatar"/>
+    <img src="/avatar.png" class="profile-avatar__img" alt="Avatar"/>
     <div>Привет, <strong>{{ name }}!</strong></div>
   </div>
 </template>
