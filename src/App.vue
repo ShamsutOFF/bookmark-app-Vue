@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import ProfileAvatar from "@/components/ProfileAvatar.vue";
 </script>
 
 <template>
   <main>
     <div class="app">
       <nav class="nav">
-        Меню
+        <ProfileAvatar name="Антон"/>
       </nav>
       <main>
         Контент
@@ -22,6 +23,7 @@
   max-width: 1450px;
   margin: 140px auto 0 auto;
 }
+
 .nav {
   min-width: 400px;
 }
