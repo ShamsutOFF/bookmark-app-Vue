@@ -1,22 +1,12 @@
 <script setup lang="ts">
 import ProfileAvatar from '@/components/ProfileAvatar.vue';
-import { onMounted } from 'vue';
-import { useProfileStore } from '@/stores/profile.store.ts';
-
-const store = useProfileStore();
-
-onMounted(() => {
-  console.log('App mounted');
-  store.fetchProfile();
-});
-
 </script>
 
 <template>
   <main>
     <div class="app">
       <nav class="nav">
-        <ProfileAvatar v-if="store.profile" :name="store.profile.name" />
+        <ProfileAvatar />
       </nav>
       <main>Контент</main>
     </div>
