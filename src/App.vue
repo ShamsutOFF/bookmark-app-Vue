@@ -2,15 +2,15 @@
 import ProfileAvatar from '@/components/ProfileAvatar.vue';
 import { onMounted, ref } from 'vue';
 import { API_ROUTES } from '@/api.ts';
-import type { Profile } from '@/interfaces/profile.ts';
+import type { ProfileInterface } from '@/interfaces/profile.interface.ts';
 
-const profile = ref<Profile>({
+const profile = ref<ProfileInterface>({
   name: '',
 });
 
 async function fetchProfile() {
   const data = await fetch(API_ROUTES.profile);
-  profile.value = (await data.json()) as Profile;
+  profile.value = (await data.json()) as ProfileInterface;
 }
 
 onMounted(() => {
