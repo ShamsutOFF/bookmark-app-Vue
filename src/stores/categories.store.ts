@@ -13,12 +13,19 @@ export const useCategoryStore = defineStore('categories', () => {
   }
 
   async function createCategory() {
-    const { data } = await http.post<ICategory>(API_ROUTES.categories,{
+    const { data } = await http.post<ICategory>(API_ROUTES.categories, {
       name: 'Новая категория',
       alias: uuidv4(),
     });
     categories.value.push(data);
   }
 
-  return { categories, fetchCategories, createCategory };
+  function getCategoryByAlias(alias: string | string[] | undefined): ICategory | undefined {
+    if (!alias) return undefined;
+
+    const aliasStr = Array.isArray(alias) ? alias[0] : alias;
+    return categories.value.find((c) => c.alias === aliasStr);
+  }
+
+  return { categories, fetchCategories, createCategory, getCategoryByAlias };
 });
