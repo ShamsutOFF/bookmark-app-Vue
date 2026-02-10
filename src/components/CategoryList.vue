@@ -13,7 +13,7 @@ onMounted(() => {
 <template>
   <ul class="category-list">
     <li class="category-list__item" v-for="category in store.categories" :key="category.id">
-      <a :href="`/${category.alias}`">{{ category.name }} </a>
+      <RouterLink :to="`/main/${category.alias}`">{{ category.name }} </RouterLink>
     </li>
     <li>
       <ButtonIcon @click="store.createCategory()">

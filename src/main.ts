@@ -2,11 +2,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import { createRouter, createWebHistory } from 'vue-router';
+import { router } from '@/routes.ts';
 
-const router = createRouter({
-  routes: [],
-  history: createWebHistory(),
-});
 const pinia = createPinia();
 
 const app = createApp(App);
