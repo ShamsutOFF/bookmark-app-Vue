@@ -13,7 +13,7 @@ const { size = 32 } = defineProps<{ size?: number }>();
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--color-bg);
+  background: var(--color-fg);
   cursor: pointer;
   border-radius: 50px;
   border: none;

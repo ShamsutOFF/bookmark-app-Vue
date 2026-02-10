@@ -7,11 +7,11 @@ export const router = createRouter({
   routes: [
     {
       path: '/',
-      component: AuthView,
+      component: () => import('@/views/AuthView.vue'),
     },
     {
       path: '/main',
-      component: MainView,
+      component: () => import('@/views/MainView.vue'),
       children: [
         {
           path: '',
