@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { useCategoryStore } from '@/stores/categories.store.ts';
 import { ref, watch } from 'vue';
 import type { ICategory } from '@/interfaces/ICategory.ts';
@@ -9,14 +9,15 @@ const state = useCategoryStore();
 const category = ref<ICategory>();
 
 watch(
-  () => ({
-    alias: route.params.alias,
-    categories: state.categories,
-  }),
-  (data) => {
-    category.value = state.getCategoryByAlias(data.alias);
+  () => state.categories,
+  () => {
+    category.value = state.getCategoryByAlias(route.params.alias);
   },
 );
+
+onBeforeRouteUpdate((to) => {
+  category.value = state.getCategoryByAlias(to.params.alias);
+});
 </script>
 
 <template>
