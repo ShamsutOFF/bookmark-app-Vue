@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AuthView from '@/views/AuthView.vue';
-import MainView from '@/views/MainView.vue';
-import Test from '@/components/Test.vue';
 
 export const router = createRouter({
   routes: [
@@ -15,10 +12,14 @@ export const router = createRouter({
       children: [
         {
           path: '',
-          component: Test,
+          component: () => import('@/views/IndexView.vue'),
           name: 'main',
         },
-      ]
+        {
+          path:':alias',
+          component: () => import('@/views/CategoryView.vue'),
+        }
+      ],
     },
   ],
   history: createWebHistory(),

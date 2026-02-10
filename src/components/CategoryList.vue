@@ -15,6 +15,7 @@ onMounted(() => {
   <ul class="category-list">
     <li class="category-list__item" v-for="category in store.categories" :key="category.id">
       <RouterLink
+        active-class="router-link-active"
         :to="`/main/${category.alias}`"
         class="category-link"
       >

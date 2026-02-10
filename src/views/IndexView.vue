@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
-<template>Test</template>
+<template>Index</template>
 
 <style scoped></style>

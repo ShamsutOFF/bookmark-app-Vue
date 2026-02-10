@@ -10,7 +10,9 @@ import CategoryList from '@/components/CategoryList.vue';
         <ProfileAvatar />
         <CategoryList />
       </nav>
-      <main>Контент</main>
+      <main>
+        <RouterView />
+      </main>
     </div>
   </main>
 </template>
