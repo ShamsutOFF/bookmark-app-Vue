@@ -1,23 +1,33 @@
 <script setup lang="ts">
-import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { useCategoryStore } from '@/stores/categories.store.ts';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import type { ICategory } from '@/interfaces/ICategory.ts';
+import { useBookmarksStore } from '@/stores/bookmark.store.ts';
+import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const state = useCategoryStore();
+const categoryStore = useCategoryStore();
+const bookmarkStore = useBookmarksStore();
 const category = ref<ICategory>();
 
+onMounted(() => {
+  category.value = categoryStore.getCategoryByAlias(route.params.alias);
+  if (category.value) {
+    bookmarkStore.fetchBookmarks(category.value.id);
+  }
+});
 watch(
-  () => state.categories,
-  () => {
-    category.value = state.getCategoryByAlias(route.params.alias);
+  () => ({
+    alias: route.params.alias,
+    categories: categoryStore.categories,
+  }),
+  (data) => {
+    category.value = categoryStore.getCategoryByAlias(data.alias);
+    if (category.value) {
+      bookmarkStore.fetchBookmarks(category.value.id);
+    }
   },
 );
-
-onBeforeRouteUpdate((to) => {
-  category.value = state.getCategoryByAlias(to.params.alias);
-});
 </script>
 
 <template>
@@ -25,6 +35,7 @@ onBeforeRouteUpdate((to) => {
   <div v-else-if="false">Категория не найдена</div>
   <div v-else>
     <h1>Категория: {{ category.name }}</h1>
+    <h2>Закладки: {{ bookmarkStore.bookmarks }}</h2>
     <!-- контент категории -->
   </div>
 </template>
