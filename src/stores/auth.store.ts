@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import type { IProfile } from '@/interfaces/IProfile.ts';
-import { API_ROUTES, http } from '@/api.ts';
+import { API_ROUTES, client } from '@/api.ts';
 import type { LoginResponse } from '@/interfaces/IAuth.ts';
 
 const TOKEN_STORE_KEY = 'token-store';
@@ -27,7 +26,7 @@ export const useAuthStore = defineStore('auth', () => {
   const getToken = computed(() => token.value);
 
   async function login(email: string, password: string) {
-    const { data } = await http.post<LoginResponse>(API_ROUTES.auth.login, {
+    const { data } = await client().post<LoginResponse>(API_ROUTES.auth.login, {
       email: email,
       password: password,
     });
